@@ -1,12 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 
+# configuration to window size, color and title
 root = Tk()
 root.title("Ticket Sales")
 root.geometry("500x600")
 root.config(bg="#212529")
 
 
+# blueprint
 class clsTicketSales:
     def __init__(self, window):
         self.cellnumber = Label(window, text="Enter Cell Number:")
@@ -36,11 +38,13 @@ class clsTicketSales:
         self.answer = Label(self.frame, text=" ")
         self.answer.place(relx="0.3", rely="0.3")
 
+    # Calculate function created
     def calculate(self):
 
         numbertickets = int(self.nr_tickets_entry.get())
         vat = 0.14
 
+        # try used to show any errors
         try:
             if len(self.cellnumber_entry.get()) > 10 or len(self.cellnumber_entry.get()) < 10:
                 raise ValueError
@@ -59,9 +63,11 @@ class clsTicketSales:
                 final = result + result * vat
                 self.answer.config(text=final)
 
+        # error shown here
         except ValueError:
             messagebox.showerror(title="Error", message="Please enter information accordingly")
 
+    # function for clear button created
     def clear(self):
         self.cellnumber_entry.delete(0, END)
         self.nr_tickets_entry.delete(0, END)
